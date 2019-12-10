@@ -1,0 +1,24 @@
+dna vx : *atacg
+dna vy : *aat
+rna vz : *uacga
+base vw : *t
+main :
+vx : vx + vy
+vx : vx - vw
+int vi : *0
+for ( vi ; 5 ) {
+vy : vy + vw
+vi : vi + 1
+}
+rna vk : *uauacgua
+if ( vk ; rna ) {
+rna vl : *cgua
+vk : vk + vl
+} else {
+dna vf : *atatacgtt
+vk : vk + vf
+}
+if ( vx = vy ) {
+rna vl : *cgua
+vk : vk + vl
+}

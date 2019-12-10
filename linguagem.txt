@@ -1,0 +1,24 @@
+if
+else
+for
+main
+dna
+rna
+base
+for
+int
++
+-
+:
+=
+!=
+{
+}
+(
+)
+;
+
+<S> ::= v<A> | *<B> | 0<C> | 1<C> | 2<C> | 3<C> | 4<C> | 5<C> | 6<C> | 7<C> | 8<C> | 9<C>
+<A> ::= a<A> | b<A> | c<A> | d<A> | e<A> | f<A> | g<A> | h<A> | i<A> | j<A> | k<A> | l<A> | m<A> | n<A> | o<A> | p<A> | q<A> | r<A> | s<A> | t<A> | u<A> | v<A> | w<A> | x<A> | y<A> | z<A> | $
+<B> ::= a<B> | c<B> | t<B> | g<B> | u<B> | 0<B> | 1<B> | 2<B> | 3<B> | 4<B> | 5<B> | 6<B> | 7<B> | 8<B> | 9<B> | $
+<C> ::= 0<C> | 1<C> | 2<C> | 3<C> | 4<C> | 5<C> | 6<C> | 7<C> | 8<C> | 9<C> | $

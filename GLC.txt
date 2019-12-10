@@ -1,0 +1,19 @@
+"Start Symbol" = <S>
+<S> ::= 'dna' <VAR> | 'rna' <VAR> | 'base' <VAR>
+<S2> ::= 'dna' <VAR2> | 'rna' <VAR2> | 'base' <VAR2>
+<S3> ::= 'dna' <VAR3> | 'rna' <VAR3> | 'base' <VAR3>  |  'int' <VAR3>
+<VAR> ::= 'vnome' ':' '*aaaaaa' <VAR> | 'main:' <MAIN>
+<VAR2> ::= 'vnome' ':' '*aaaaaa'  
+<VAR3> ::= 'vnome' ':' '*aaaaaa' <MAIN>
+<MAIN> ::= <OP> <MAIN> | <S3> | <LACO> <MAIN> | <LOG> | <>
+<OP> ::= 'vnome' ':' 'vnome' <SIMB> 'vnome' <OP>
+<SIMB> ::= '+' | '-' 
+<SIMB2> ::= '=' | '!='
+<LACO> ::= 'for' '(' 'vnome' ';' <NUM> ')' '{' <OP2> <INC> '}' 
+<NUM> ::= '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '0'
+<INC> ::=  'vnome' ':' 'vnome' <SIMB> <NUM>
+<LOG> ::= 'if' '(' <OP3> ')' '{' <S2> <OP2> '}' <ELSE>
+<ELSE> ::= 'else' '{' <S2> <OP2> '}' | <MAIN>
+<TIPO> ::= 'rna' | 'dna' | 'base'
+<OP2> ::= 'vnome' ':' 'vnome' <SIMB> 'vnome'
+<OP3> ::= 'vnome' ';' <TIPO> | 'vnome' <SIMB2> 'vnome'
