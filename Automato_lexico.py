@@ -151,10 +151,10 @@ class Automato(object):
                     estado = 0 #zera as variaveis
                     palavra = ''
                 else:    
-                    try:
+                    try: #estado de erro
                         estado = automato[estado][caracter][0]
                     except KeyError:
-                        estado = -1 #estado de erro
+                        estado = -1 
                     if caracter != ' ': #se for diferente de espaço ainda é uma palavra
                         palavra += caracter
 
