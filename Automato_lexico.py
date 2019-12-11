@@ -132,26 +132,27 @@ class Automato(object):
     #---------------------------------- Analisador léxico --------------------------------
     def analisador_lexico_sintatico(self):
 
-        tabela_automato = self.pegarAutomato()
         fita_saida = [] 
         TS = []    
-        codigo_fonte = list(open('exemploGramatica.txt'))
-        separadores = [' ', '\n', '\t']
         palavra = ''
         linha_atual = 0
         estado = 0
+        codigo_fonte = list(open('exemploGramatica.txt'))
+        automato = self.pegarAutomato()
+        separadores = [' ', '\n', '\t']
 
-        for linha in codigo_fonte:
-            linha_atual += 1
-            for caracter in linha:
-                if caracter in separadores and palavra:
+        for linha in codigo_fonte: #iteração por linha do codigo de exemplo
+            linha_atual += 1 #controle de linhas
+            for caracter in linha: #verificando cada caracter da linha atual
+                if caracter in separadores and palavra: #se o caracter é um separador e ainda esta lendo uma palavra
+                    #foi encontrado uma palavra!!!!
                     TS.append({'Linha': str(linha_atual), 'Estado': str(estado), 'Rotulo': palavra.strip('\n')})
-                    fita_saida.append(estado)
-                    estado = 0
+                    fita_saida.append(estado) #adiciona o estado atual na fita de saida
+                    estado = 0 #zera as variaveis
                     palavra = ''
                 else:    
                     try:
-                        estado = tabela_automato[estado][caracter][0]
+                        estado = automato[estado][caracter][0]
                     except KeyError:
                         estado = -1 #estado de erro
                     if caracter != ' ': #se for diferente de espaço ainda é uma palavra
@@ -186,6 +187,88 @@ class Automato(object):
         # for x in Ts:
         #     print(x)
         # print('\n')
+#--------------------------------------------------------------------
+        # xml_parser = "GLC.xml"
+        # tree = ET.parse(xml_parser)
+        # root = tree.getroot()
+        # for symbol in root.iter('Symbol'):
+        #     for x in Ts:
+        #         if x['Rotulo'] == symbol.attrib['Name']:
+        #             x['Estado'] = symbol.attrib['Index'] 
+        #         elif x['Rotulo'][0] == '.' and x['Rotulo'][-1] == '.' and symbol.attrib['Name'] == '.name.':
+        #             x['Estado'] = symbol.attrib['Index']
+        #         elif x['Rotulo'][0] == '0' and symbol.attrib['Name'] == '0constant':
+        #             x['Estado'] = symbol.attrib['Index']  
+
+        # print("\n")
+        # for x in Ts:
+        #     fitaS.append(x['Estado'])
+        #     print(x)
+        # print("\n Fita de saída:", fitaS, "\n")
+
+        # for erro in Ts:
+        #     if erro['Estado'] == '-1':
+        #         print('Erro Léxico: linha "{}", erro "{}"' .format(erro['Linha'], erro['Rotulo']))
+
+        # pilha = []
+        # pilha.append(0)
+        # erro = 0
+        # Rc = 0
+        # for fita in fitaS:
+        #     if erro == 1 or erro == -1:
+        #         break
+        #     for linha in root.iter('LALRState'):
+        #         if erro == 1 or erro == -1:
+        #             break
+        #         elif linha.attrib['Index'] == str(pilha[-1]):
+        #             for coluna in linha:
+        #                 if coluna.attrib['SymbolIndex'] == fita:
+
+        #                     if coluna.attrib['Action'] == '1':              # Empilha
+        #                         pilha.append(fita)
+        #                         pilha.append(int(coluna.attrib['Value']))
+        #                         break
+
+        #                     elif coluna.attrib['Action'] == '2':            # Redução
+        #                         for prod in root.iter('Production'):
+        #                             if prod.attrib['Index'] == coluna.attrib['Value']:
+        #                                 Rx = 2 * int(prod.attrib['SymbolCount'])
+        #                                 break
+        #                         if len(pilha) <= Rx:
+        #                             erro = 1
+        #                             break
+        #                         for remove in range(Rx):
+        #                             pilha.pop()
+        #                         for linhaR in root.iter('LALRState'):
+        #                             if linhaR.attrib['Index'] == str(pilha[-1]):
+        #                                 for colunaR in linhaR:
+        #                                     if colunaR.attrib['SymbolIndex'] == prod.attrib['NonTerminalIndex']:
+        #                                         pilha.append(prod.attrib['NonTerminalIndex'])
+        #                                         pilha.append(int(colunaR.attrib['Value']))
+        #                                         Rc = 1
+        #                                         break
+        #                             if Rc == 1:
+        #                                 Rc = 0
+        #                                 break
+
+        #                     elif coluna.attrib['Action'] == '3':            # Salto
+        #                         pilha.append(int(coluna.attrib['Value']))
+        #                         break
+
+        #                     elif coluna.attrib['Action'] == '4':            # Aceita
+        #                         erro = -1
+        #                         break
+        #             break
+        
+        # if erro == 1:
+        #     print("\nErro de sintaxe!\n")
+        # elif erro == -1:
+        #     print("\nAceito!\n")
+
+
+
+
+        # print("Pilha: ", pilha)
 
 
     def setAlfabetoEstado(self, estado):        #em um estado é inserido todos os símbolos do alfabeto
